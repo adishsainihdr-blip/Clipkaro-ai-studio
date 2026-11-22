@@ -22,6 +22,8 @@ jobs:
       - name: Install dependencies and build web bundle
         run: |
           npm install --legacy-peer-deps
+          mkdir -p src/utils
+echo "export const projectFilesManifest = [];" > src/utils/projectFilesManifest.ts
           if [ -f scripts/copy-ffmpeg.mjs ]; then node scripts/copy-ffmpeg.mjs; fi
           npm run build
           mkdir -p android/app/src/main/assets/public
