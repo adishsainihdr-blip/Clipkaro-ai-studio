@@ -36,6 +36,9 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
+      - name: Fix Kotlin duplicate
+        run: |
+          echo "configurations.all { resolutionStrategy { force 'org.jetbrains.kotlin:kotlin-stdlib:1.8.22', 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22', 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22' } }" >> android/app/build.gradle
       - name: Build Debug APK
         working-directory: android
         run: gradle assembleDebug --no-daemon
